@@ -1,6 +1,7 @@
 package com.ruraaratech.p4dafrica.location.rest;
 
 import com.ruraaratech.p4dafrica.location.dto.SectorRequest;
+import com.ruraaratech.p4dafrica.location.dto.SectorResponse;
 import com.ruraaratech.p4dafrica.location.model.Sector;
 import com.ruraaratech.p4dafrica.location.service.SectorService;
 import io.swagger.annotations.ApiOperation;
@@ -31,7 +32,7 @@ public class SectorController {
 
     @ApiOperation(value = "returns list of all sectors in a district.")
     @GetMapping("/get/all/{districtId}")
-    public ResponseEntity<List<Sector>> getAll(@PathVariable long districtId){
+    public ResponseEntity<List<SectorResponse>> getAll(@PathVariable long districtId){
         return ResponseEntity.status(HttpStatus.OK).body(sectorService.getAll(districtId));
     }
 }

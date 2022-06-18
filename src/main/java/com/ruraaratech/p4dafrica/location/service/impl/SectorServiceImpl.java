@@ -1,9 +1,12 @@
 package com.ruraaratech.p4dafrica.location.service.impl;
 
+import com.ruraaratech.p4dafrica.Document.service.BudgetService;
+import com.ruraaratech.p4dafrica.Document.service.PlanService;
 import com.ruraaratech.p4dafrica.exceptions.InvalidValuesException;
 import com.ruraaratech.p4dafrica.exceptions.ResourceNotFoundException;
 import com.ruraaratech.p4dafrica.location.dao.SectorDao;
 import com.ruraaratech.p4dafrica.location.dto.SectorRequest;
+import com.ruraaratech.p4dafrica.location.dto.SectorResponse;
 import com.ruraaratech.p4dafrica.location.model.Sector;
 import com.ruraaratech.p4dafrica.location.service.SectorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,8 @@ import java.util.List;
 @Service
 public class SectorServiceImpl implements SectorService {
     @Autowired SectorDao sectorDao;
+    @Autowired PlanService planService;
+    @Autowired BudgetService budgetService;
 
     @Transactional
     @Override
@@ -30,7 +35,7 @@ public class SectorServiceImpl implements SectorService {
             }
             Sector sector =new Sector();
             sector.setEnabled(true);
-            sector.setName(request.getName());
+            sector.setName(name);
             sector.setDistrictId(districtId);
             sectorList.add(sector);
         }
@@ -43,7 +48,24 @@ public class SectorServiceImpl implements SectorService {
     }
 
     @Override
-    public List<Sector> getAll(long districtId) {
+    public List<SectorResponse> getAll(long districtId) {
+        List<Sector> sectors =sectorDao.findByDistrictId(districtId);
+        List<SectorResponse> responseList =new ArrayList<>();
+        for(Sector sector: sectors){
+            SectorResponse response =new SectorResponse();
+            response.setDistrictId(sector.getDistrictId());
+            response.setEnabled(sector.isEnabled());
+            response.setId(sector.getId());
+            response.setName(sector.getName());
+            response.setBudgets(budgetService.getAll(sector.getId()));
+            response.setPlans(planService.getAll(sector.getId()));
+            responseList.add(response);
+        }
+        return responseList;
+    }
+
+    @Override
+    public List<Sector> getByDistrict(long districtId) {
         return sectorDao.findByDistrictId(districtId);
     }
 

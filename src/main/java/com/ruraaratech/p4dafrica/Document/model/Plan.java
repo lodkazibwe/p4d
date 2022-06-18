@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.net.URL;
 import java.util.Date;
 
 @Data
@@ -17,11 +18,13 @@ public class Plan {
     @GeneratedValue
     private long id;
     private String tittle;
+    private int year;
     private String file;
     private long sector;
     private long district;
     private long country;
-    private String url;
+    @Column(length = 1000)
+    private URL url;
     private long createdBy;
     private long updatedBy;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")

@@ -26,10 +26,8 @@ public class BudgetController {
     public ResponseEntity<Budget>  addBudget(@RequestParam("file") MultipartFile file,
                                              @Valid @NotBlank(message ="title cannot be blank") @RequestParam("title") String title,
                                              @Valid @NotBlank(message ="sector id cannot be blank") @RequestParam("sectorId") long sectorId,
-                                             @Valid @NotBlank(message ="year cannot be blank") @RequestParam("year") int year,
-                                             @Valid @NotBlank(message ="month cannot be blank") @RequestParam("month") int month) throws IOException {
+                                             @Valid @NotBlank(message ="year cannot be blank") @RequestParam("year") int year) throws IOException {
         FileRequest request =new FileRequest();
-        request.setMonth(month);
         request.setSectorId(sectorId);
         request.setTitle(title);
         request.setYear(year);

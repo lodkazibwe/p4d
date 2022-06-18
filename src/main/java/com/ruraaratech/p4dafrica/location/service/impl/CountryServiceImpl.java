@@ -3,9 +3,11 @@ package com.ruraaratech.p4dafrica.location.service.impl;
 import com.ruraaratech.p4dafrica.exceptions.InvalidValuesException;
 import com.ruraaratech.p4dafrica.exceptions.ResourceNotFoundException;
 import com.ruraaratech.p4dafrica.location.dao.CountryDao;
+import com.ruraaratech.p4dafrica.location.dto.CountryDto;
 import com.ruraaratech.p4dafrica.location.dto.CountryRequest;
 import com.ruraaratech.p4dafrica.location.dto.CountryResponse;
 import com.ruraaratech.p4dafrica.location.model.Country;
+import com.ruraaratech.p4dafrica.location.model.District;
 import com.ruraaratech.p4dafrica.location.service.CountryService;
 import com.ruraaratech.p4dafrica.location.service.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +52,18 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public List<Country> getAll() {
-        return countryDao.findAll();
+    public List<CountryDto> getAll() {
+        List<Country> countryList =countryDao.findAll();
+        List<CountryDto> countries =new ArrayList<>();
+        for(Country country: countryList){
+            CountryDto countryDto =new CountryDto();
+            countryDto.setId(country.getId());
+            countryDto.setEnabled(country.isEnabled());
+            countryDto.setName(country.getName());
+            countryDto.setDistricts(districtService.getByCountry(country.getId()));
+            countries.add(countryDto);
+        }
+        return countries;
     }
 
     @Override

@@ -10,6 +10,7 @@ public interface DistrictService {
      List<District> add(List<DistrictRequest> request, long countryId);
      DistrictResponse get(long districtId);
      District getById(long districtId);
+     List<District> getByCountry(long countryId);
      List<DistrictResponse> getAll(long countryId);
      boolean existsById(long districtId);
 }

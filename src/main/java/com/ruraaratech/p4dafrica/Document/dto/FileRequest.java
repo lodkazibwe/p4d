@@ -16,6 +16,4 @@ public class FileRequest {
     private String title;
     @NotBlank(message ="int year cannot be blank")
     private int year;
-    @NotBlank(message ="int month cannot be blank")
-    private int month;
 }

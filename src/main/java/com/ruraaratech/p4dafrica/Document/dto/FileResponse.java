@@ -6,7 +6,6 @@ public class FileResponse {
     private long id;
     private String tittle;
     private int year;
-    private int month;
     private String file;
     private long sector;
     private long district;

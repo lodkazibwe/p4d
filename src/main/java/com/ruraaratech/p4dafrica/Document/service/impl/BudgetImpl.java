@@ -43,7 +43,6 @@ public class BudgetImpl implements BudgetService {
         budget.setSector(file.getSectorId());
         String fileName =fileService.generateFileName(multiPart);
         budget.setFile(fileName);
-        budget.setMonth(file.getMonth());
         budget.setYear(file.getYear());
         budget.setTittle(file.getTitle());
         logger.info("uploading file....");

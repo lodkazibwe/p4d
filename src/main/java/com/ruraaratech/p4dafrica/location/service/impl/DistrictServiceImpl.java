@@ -68,12 +68,17 @@ public class DistrictServiceImpl implements DistrictService {
         districtResponse.setEnabled(district.isEnabled());
         districtResponse.setName(district.getName());
         districtResponse.setDistrictId(district.getId());
-        districtResponse.setSectors(sectorService.getAll(district.getId()));
+        districtResponse.setSectors(sectorService.getByDistrict(district.getId()));
         return districtResponse;
     }
 
     @Override
     public boolean existsById(long districtId) {
         return districtDao.existsById(districtId);
+    }
+
+    @Override
+    public List<District> getByCountry(long countryId) {
+        return districtDao.findByCountryId(countryId);
     }
 }

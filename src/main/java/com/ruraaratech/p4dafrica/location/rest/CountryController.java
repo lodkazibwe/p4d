@@ -1,5 +1,6 @@
 package com.ruraaratech.p4dafrica.location.rest;
 
+import com.ruraaratech.p4dafrica.location.dto.CountryDto;
 import com.ruraaratech.p4dafrica.location.dto.CountryRequest;
 import com.ruraaratech.p4dafrica.location.dto.CountryResponse;
 import com.ruraaratech.p4dafrica.location.model.Country;
@@ -33,7 +34,7 @@ public class CountryController {
 
     @ApiOperation(value = "returns list of all countries.")
     @GetMapping("/get")
-    public ResponseEntity<List<Country>> getCountry(){
+    public ResponseEntity<List<CountryDto>> getCountry(){
         return ResponseEntity.status(HttpStatus.OK).body(countryService.getAll());
     }
 }

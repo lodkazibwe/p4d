@@ -17,7 +17,6 @@ public class Sector {
     @Id
     @GeneratedValue
     private long id;
-    @Column(unique = true)
     private String name;
     private boolean enabled;
     private long districtId;
