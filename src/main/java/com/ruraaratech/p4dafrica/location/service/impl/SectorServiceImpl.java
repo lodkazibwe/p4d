@@ -19,8 +19,8 @@ import java.util.List;
 @Service
 public class SectorServiceImpl implements SectorService {
     @Autowired SectorDao sectorDao;
-    @Autowired PlanService planService;
-    @Autowired BudgetService budgetService;
+    //@Autowired PlanService planService;
+    //@Autowired BudgetService budgetService;
 
     @Transactional
     @Override
@@ -57,8 +57,8 @@ public class SectorServiceImpl implements SectorService {
             response.setEnabled(sector.isEnabled());
             response.setId(sector.getId());
             response.setName(sector.getName());
-            response.setBudgets(budgetService.getAll(sector.getId()));
-            response.setPlans(planService.getAll(sector.getId()));
+            //response.setBudgets(budgetService.getAll(sector.getId()));
+            //response.setPlans(planService.getAll(sector.getId()));
             responseList.add(response);
         }
         return responseList;

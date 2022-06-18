@@ -32,7 +32,7 @@ public class SectorController {
 
     @ApiOperation(value = "returns list of all sectors in a district.")
     @GetMapping("/get/all/{districtId}")
-    public ResponseEntity<List<SectorResponse>> getAll(@PathVariable long districtId){
-        return ResponseEntity.status(HttpStatus.OK).body(sectorService.getAll(districtId));
+    public ResponseEntity<List<Sector>> getAll(@PathVariable long districtId){
+        return ResponseEntity.status(HttpStatus.OK).body(sectorService.getByDistrict(districtId));
     }
 }
