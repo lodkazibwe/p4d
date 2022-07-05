@@ -44,7 +44,7 @@ public class BudgetImpl implements BudgetService {
         String fileName =fileService.generateFileName(multiPart);
         budget.setFile(fileName);
         budget.setYear(file.getYear());
-        budget.setTittle(file.getTitle());
+        budget.setTitle(file.getTitle());
         logger.info("uploading file....");
         URL url =fileService.uploadFile(multiPart, fileName);
         budget.setUrl(url);

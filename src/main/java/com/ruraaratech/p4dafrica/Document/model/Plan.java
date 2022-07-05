@@ -17,7 +17,7 @@ public class Plan {
     @Id
     @GeneratedValue
     private long id;
-    private String tittle;
+    private String title;
     private int year;
     private String file;
     private long sector;

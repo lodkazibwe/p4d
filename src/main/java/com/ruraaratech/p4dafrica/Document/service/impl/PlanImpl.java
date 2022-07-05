@@ -50,7 +50,7 @@ public class PlanImpl implements PlanService {
         String fileName =fileService.generateFileName(multiPart);
         plan.setFile(fileName);
         plan.setYear(file.getYear());
-        plan.setTittle(file.getTitle());
+        plan.setTitle(file.getTitle());
         logger.info("uploading file....");
         URL url =fileService.uploadFile(multiPart, fileName);
         plan.setUrl(url);
