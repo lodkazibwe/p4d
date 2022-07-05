@@ -45,4 +45,10 @@ public class PlanController {
     public ResponseEntity<List<Plan>> getBySector(@PathVariable long sectorId){
         return ResponseEntity.status(HttpStatus.OK).body(budgetService.getAll(sectorId));
     }
+
+    @ApiOperation(value = "returns all plans")
+    @GetMapping("/get/all")
+    public ResponseEntity<List<Plan>> getAll(){
+        return ResponseEntity.status(HttpStatus.OK).body(budgetService.getAll());
+    }
 }

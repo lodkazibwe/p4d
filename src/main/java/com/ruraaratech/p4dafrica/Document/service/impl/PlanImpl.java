@@ -70,4 +70,9 @@ public class PlanImpl implements PlanService {
     public List<Plan> getAll(long sectorId) {
         return null;
     }
+
+    @Override
+    public List<Plan> getAll() {
+        return planDao.findAll();
+    }
 }

@@ -35,4 +35,10 @@ public class SectorController {
     public ResponseEntity<List<Sector>> getAll(@PathVariable long districtId){
         return ResponseEntity.status(HttpStatus.OK).body(sectorService.getByDistrict(districtId));
     }
+
+    @ApiOperation(value = "returns list of all sectors")
+    @GetMapping("/get/all")
+    public ResponseEntity<List<Sector>> getAll(){
+        return ResponseEntity.status(HttpStatus.OK).body(sectorService.getAll());
+    }
 }

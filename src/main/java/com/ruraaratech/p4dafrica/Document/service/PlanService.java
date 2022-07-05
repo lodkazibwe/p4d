@@ -11,4 +11,5 @@ public interface PlanService {
     Plan add(MultipartFile multiPart, FileRequest file) throws IOException;
     Plan get(long fileId);
     List<Plan> getAll(long sectorId);
+    List<Plan> getAll();
 }

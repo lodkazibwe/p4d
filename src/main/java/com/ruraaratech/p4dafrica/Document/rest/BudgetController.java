@@ -46,4 +46,10 @@ public class BudgetController {
         return ResponseEntity.status(HttpStatus.OK).body(budgetService.getAll(sectorId));
     }
 
+    @ApiOperation(value = "returns all budgets.")
+    @GetMapping("/get/all")
+    public ResponseEntity<List<Budget>> getAll(){
+        return ResponseEntity.status(HttpStatus.OK).body(budgetService.getAll());
+    }
+
 }

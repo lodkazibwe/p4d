@@ -11,4 +11,5 @@ public interface BudgetService {
     Budget add(MultipartFile multiPart, FileRequest file) throws IOException;
     Budget get(long fileId);
     List<Budget> getAll(long sectorId);
+    List<Budget> getAll();
 }

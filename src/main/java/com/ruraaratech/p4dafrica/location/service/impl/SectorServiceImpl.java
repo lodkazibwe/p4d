@@ -73,4 +73,9 @@ public class SectorServiceImpl implements SectorService {
     public boolean existsById(long sectorId) {
         return sectorDao.existsById(sectorId);
     }
+
+    @Override
+    public List<Sector> getAll() {
+        return sectorDao.findAll();
+    }
 }

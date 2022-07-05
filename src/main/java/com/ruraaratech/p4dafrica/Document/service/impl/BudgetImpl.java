@@ -65,4 +65,9 @@ public class BudgetImpl implements BudgetService {
     public List<Budget> getAll(long sectorId) {
         return budgetDao.findBySector(sectorId);
     }
+
+    @Override
+    public List<Budget> getAll() {
+        return budgetDao.findAll();
+    }
 }

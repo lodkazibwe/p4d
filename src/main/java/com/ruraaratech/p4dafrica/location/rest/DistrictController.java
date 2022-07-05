@@ -35,4 +35,10 @@ public class DistrictController {
         return ResponseEntity.status(HttpStatus.OK).body(districtService.getAll(countryId));
     }
 
+    @ApiOperation(value = "returns list of all districts")
+    @GetMapping("/get/all")
+    public ResponseEntity<List<District>> getAll(){
+        return ResponseEntity.status(HttpStatus.OK).body(districtService.getAll());
+    }
+
 }

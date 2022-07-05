@@ -12,5 +12,6 @@ public interface DistrictService {
      District getById(long districtId);
      List<District> getByCountry(long countryId);
      List<DistrictResponse> getAll(long countryId);
+     List<District> getAll();
      boolean existsById(long districtId);
 }

@@ -81,4 +81,9 @@ public class DistrictServiceImpl implements DistrictService {
     public List<District> getByCountry(long countryId) {
         return districtDao.findByCountryId(countryId);
     }
+
+    @Override
+    public List<District> getAll() {
+        return districtDao.findAll();
+    }
 }

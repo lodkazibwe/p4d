@@ -11,6 +11,7 @@ public interface SectorService {
     Sector get(long sectorId);
     List<Sector> getByDistrict(long districtId);
     List<SectorResponse> getAll(long districtId);
+    List<Sector> getAll();
     boolean existsById(long sectorId);
 
 }
