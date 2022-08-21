@@ -13,6 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(schema="files")
 public class Plan {
     @Id
     @GeneratedValue
