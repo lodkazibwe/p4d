@@ -19,11 +19,11 @@ import java.util.List;
 @RequestMapping("/plan")
 public class PlanController {
     @Autowired
-    PlanService budgetService;
+    PlanService planService;
 
     @ApiOperation(value = "adds plan to a sector.")
     @PostMapping("/add")
-    public ResponseEntity<Plan> addBudget(@RequestParam("file") MultipartFile file,
+    public ResponseEntity<Plan> addPlan(@RequestParam("file") MultipartFile file,
                                             @Valid @NotBlank(message ="title cannot be blank") @RequestParam("title") String title,
                                             @Valid @NotBlank(message ="sector id cannot be blank") @RequestParam("sectorId") long sectorId,
                                             @Valid @NotBlank(message ="year cannot be blank") @RequestParam("year") int year) throws IOException {
@@ -31,24 +31,24 @@ public class PlanController {
         request.setSectorId(sectorId);
         request.setTitle(title);
         request.setYear(year);
-        return ResponseEntity.status(HttpStatus.OK).body(budgetService.add(file, request));
+        return ResponseEntity.status(HttpStatus.OK).body(planService.add(file, request));
     }
 
     @ApiOperation(value = "gets plan by ID.")
     @GetMapping("/get/{budgetId}")
     public ResponseEntity<Plan> getBudget(@PathVariable long budgetId){
-        return ResponseEntity.status(HttpStatus.OK).body(budgetService.get(budgetId));
+        return ResponseEntity.status(HttpStatus.OK).body(planService.get(budgetId));
     }
 
     @ApiOperation(value = "gets all plans in a sector.")
     @GetMapping("/get/sector/{sectorId}")
     public ResponseEntity<List<Plan>> getBySector(@PathVariable long sectorId){
-        return ResponseEntity.status(HttpStatus.OK).body(budgetService.getAll(sectorId));
+        return ResponseEntity.status(HttpStatus.OK).body(planService.getAll(sectorId));
     }
 
     @ApiOperation(value = "returns all plans")
     @GetMapping("/get/all")
     public ResponseEntity<List<Plan>> getAll(){
-        return ResponseEntity.status(HttpStatus.OK).body(budgetService.getAll());
+        return ResponseEntity.status(HttpStatus.OK).body(planService.getAll());
     }
 }

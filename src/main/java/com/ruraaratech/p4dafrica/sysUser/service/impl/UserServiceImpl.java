@@ -39,7 +39,6 @@ public class UserServiceImpl implements UserService {
         sysUser.setPassword(passwordEncoder.encode("admin@P4D"));
         return userDAO.save(sysUser);
     }
-
     private SysUser genNewSysUser(String userName) {
         SysUser sysUser =new SysUser();
         sysUser.setEmail(userName);

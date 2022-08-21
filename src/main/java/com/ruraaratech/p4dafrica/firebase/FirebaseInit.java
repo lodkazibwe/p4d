@@ -17,6 +17,7 @@ public class FirebaseInit {
         FileInputStream serviceAccount =
                 new FileInputStream("/home/qci_user/apps/p4d/service-account.json");// /home/iat/iat
         //./service-account.json
+        //
 
         FirebaseOptions options = FirebaseOptions.builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
