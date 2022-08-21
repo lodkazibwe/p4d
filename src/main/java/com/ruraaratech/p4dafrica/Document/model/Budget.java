@@ -13,7 +13,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(schema="files")
 public class Budget {
     @Id
     @GeneratedValue
