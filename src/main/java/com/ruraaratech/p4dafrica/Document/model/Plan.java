@@ -19,6 +19,7 @@ public class Plan {
     private long id;
     private String title;
     private int year;
+    @Column(length=5000)
     private String file;
     private long sector;
     private long district;
