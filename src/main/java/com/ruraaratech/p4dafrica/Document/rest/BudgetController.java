@@ -22,11 +22,11 @@ public class BudgetController {
     @Autowired BudgetService budgetService;
 
     @ApiOperation(value = "adds budget to a sector.")
-    @PostMapping("/add")
+    @PostMapping("/add/{sectorId}/{year}/{title}")
     public ResponseEntity<Budget>  addBudget(@RequestParam("file") MultipartFile file,
-                                             @Valid @NotBlank(message ="title cannot be blank") @RequestParam("title") String title,
-                                             @Valid @NotBlank(message ="sector id cannot be blank") @RequestParam("sectorId") long sectorId,
-                                             @Valid @NotBlank(message ="year cannot be blank") @RequestParam("year") int year) throws IOException {
+                                             @Valid @NotBlank(message ="title cannot be blank") @PathVariable String title,
+                                             @Valid @NotBlank(message ="sector id cannot be blank") @PathVariable long sectorId,
+                                             @Valid @NotBlank(message ="year cannot be blank") @PathVariable int year) throws IOException {
         FileRequest request =new FileRequest();
         request.setSectorId(sectorId);
         request.setTitle(title);

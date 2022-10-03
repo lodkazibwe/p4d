@@ -1,6 +1,7 @@
 package com.ruraaratech.p4dafrica.Document.rest;
 
 import com.ruraaratech.p4dafrica.Document.dto.FileRequest;
+import com.ruraaratech.p4dafrica.Document.model.Budget;
 import com.ruraaratech.p4dafrica.Document.model.Plan;
 import com.ruraaratech.p4dafrica.Document.service.PlanService;
 import io.swagger.annotations.ApiOperation;
@@ -22,11 +23,11 @@ public class PlanController {
     PlanService planService;
 
     @ApiOperation(value = "adds plan to a sector.")
-    @PostMapping("/add")
-    public ResponseEntity<Plan> addPlan(@RequestParam("file") MultipartFile file,
-                                            @Valid @NotBlank(message ="title cannot be blank") @RequestParam("title") String title,
-                                            @Valid @NotBlank(message ="sector id cannot be blank") @RequestParam("sectorId") long sectorId,
-                                            @Valid @NotBlank(message ="year cannot be blank") @RequestParam("year") int year) throws IOException {
+    @PostMapping("/add/{sectorId}/{year}/{title}")
+    public ResponseEntity<Plan>  addBudget(@RequestParam("file") MultipartFile file,
+                                             @Valid @NotBlank(message ="title cannot be blank") @PathVariable String title,
+                                             @Valid @NotBlank(message ="sector id cannot be blank") @PathVariable long sectorId,
+                                             @Valid @NotBlank(message ="year cannot be blank") @PathVariable int year) throws IOException {
         FileRequest request =new FileRequest();
         request.setSectorId(sectorId);
         request.setTitle(title);
