@@ -8,10 +8,8 @@ import java.util.List;
 
 public interface DistrictService {
      List<District> add(List<DistrictRequest> request, long countryId);
-     DistrictResponse get(long districtId);
-     District getById(long districtId);
-     List<District> getByCountry(long countryId);
-     List<DistrictResponse> getAll(long countryId);
+     District get(long districtId);
+     List<District> getAll(long countryId);
      List<District> getAll();
      boolean existsById(long districtId);
 }

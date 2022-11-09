@@ -1,8 +1,6 @@
 package com.ruraaratech.p4dafrica.location.rest;
 
-import com.ruraaratech.p4dafrica.location.dto.CountryDto;
 import com.ruraaratech.p4dafrica.location.dto.CountryRequest;
-import com.ruraaratech.p4dafrica.location.dto.CountryResponse;
 import com.ruraaratech.p4dafrica.location.model.Country;
 import com.ruraaratech.p4dafrica.location.service.CountryService;
 import io.swagger.annotations.ApiOperation;
@@ -28,13 +26,13 @@ public class CountryController {
 
     @ApiOperation(value = "returns country with all its districts and sectors.")
     @GetMapping("/get/{CountryId}")
-    public ResponseEntity<CountryResponse> getCountry(@PathVariable long CountryId){
+    public ResponseEntity<Country> getCountry(@PathVariable long CountryId){
         return ResponseEntity.status(HttpStatus.OK).body(countryService.getCountry(CountryId));
     }
 
     @ApiOperation(value = "returns list of all countries.")
     @GetMapping("/get")
-    public ResponseEntity<List<CountryDto>> getCountry(){
+    public ResponseEntity<List<Country>> getCountry(){
         return ResponseEntity.status(HttpStatus.OK).body(countryService.getAll());
     }
 }

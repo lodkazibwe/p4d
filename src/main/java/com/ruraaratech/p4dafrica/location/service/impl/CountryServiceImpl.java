@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 public class CountryServiceImpl implements CountryService {
     @Autowired CountryDao countryDao;
-    @Autowired DistrictService districtService;
+    //@Autowired DistrictService districtService;
 
     @Transactional
     @Override
@@ -41,20 +41,14 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public CountryResponse getCountry(long countryId) {
-        CountryResponse countryResponse =new CountryResponse();
-        Country country =countryDao.findById(countryId).orElseThrow(()->new ResourceNotFoundException("country not found, ID: "+countryId));
-        countryResponse.setEnabled(country.isEnabled());
-        countryResponse.setCountryId(country.getId());
-        countryResponse.setName(country.getName());
-        countryResponse.setDistricts(districtService.getAll(countryId));
-        return countryResponse;
+    public Country getCountry(long countryId) {
+        return countryDao.findById(countryId).orElseThrow(()->new ResourceNotFoundException("country not found, ID: "+countryId));
     }
 
     @Override
-    public List<CountryDto> getAll() {
-        List<Country> countryList =countryDao.findAll();
-        List<CountryDto> countries =new ArrayList<>();
+    public List<Country> getAll() {
+        return countryDao.findAll();
+       /*List<CountryDto> countries =new ArrayList<>();
         for(Country country: countryList){
             CountryDto countryDto =new CountryDto();
             countryDto.setId(country.getId());
@@ -63,7 +57,7 @@ public class CountryServiceImpl implements CountryService {
             countryDto.setDistricts(districtService.getByCountry(country.getId()));
             countries.add(countryDto);
         }
-        return countries;
+        return countries;*/
     }
 
     @Override

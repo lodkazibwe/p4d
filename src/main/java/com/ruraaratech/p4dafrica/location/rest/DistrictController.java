@@ -26,12 +26,12 @@ public class DistrictController {
 
     @ApiOperation(value = "returns a district with all its sectors.")
     @GetMapping("/get/{districtId}")
-    public ResponseEntity<DistrictResponse> getDistrict(@PathVariable long districtId){
+    public ResponseEntity<District> getDistrict(@PathVariable long districtId){
         return ResponseEntity.status(HttpStatus.OK).body(districtService.get(districtId));
     }
     @ApiOperation(value = "returns list of all districts in a country.")
     @GetMapping("/get/all/{countryId}")
-    public ResponseEntity<List<DistrictResponse>> getAll(@PathVariable long countryId){
+    public ResponseEntity<List<District>> getAll(@PathVariable long countryId){
         return ResponseEntity.status(HttpStatus.OK).body(districtService.getAll(countryId));
     }
 

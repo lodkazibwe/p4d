@@ -12,4 +12,5 @@ public interface BudgetService {
     Budget get(long fileId);
     List<Budget> getAll(long sectorId);
     List<Budget> getAll();
+    List<Budget> getByDistrict(long districtId);
 }

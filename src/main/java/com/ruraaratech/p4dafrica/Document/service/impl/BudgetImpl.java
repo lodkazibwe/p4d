@@ -34,25 +34,35 @@ public class BudgetImpl implements BudgetService {
     private final Logger logger = LoggerFactory.getLogger(BudgetImpl.class);
     @Override
     public Budget add(MultipartFile multiPart, FileRequest file) throws IOException {
-        SysUser user =userService.currentUser();
-        Budget budget =new Budget();
         Sector sector =sectorService.get(file.getSectorId());
-        District district =districtService.getById(sector.getDistrictId());
-        budget.setCountry(district.getCountryId());
-        budget.setDistrict(sector.getDistrictId());
-        budget.setSector(file.getSectorId());
+        Budget budget =new Budget();
+        logger.info("check if budget exists exists....");
+        Budget existingBudget =budgetDao.findBySectorAndYear(sector, file.getYear());
+        if(existingBudget!=null){
+            budget.setId(existingBudget.getId());
+        }
+        SysUser user =userService.currentUser();
+        budget.setSector(sector);
         String fileName =fileService.generateFileName(multiPart);
         budget.setFile(fileName);
         budget.setYear(file.getYear());
         budget.setTitle(file.getTitle());
         logger.info("uploading file....");
         URL url =fileService.uploadFile(multiPart, fileName);
+        logger.info("file uploaded....");
         budget.setUrl(url);
         budget.setDateCreated(new Date());
         budget.setDateUpdated(new Date());
         budget.setCreatedBy(user.getUserId());
         budget.setUpdatedBy(user.getUserId());
         return budgetDao.save(budget);
+    }
+
+    @Override
+    public List<Budget> getByDistrict(long districtId) {
+        District district =new District();
+        district.setId(districtId);
+        return budgetDao.findByDistrict(district);
     }
 
     @Override

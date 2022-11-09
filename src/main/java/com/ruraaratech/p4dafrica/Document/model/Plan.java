@@ -1,6 +1,7 @@
 package com.ruraaratech.p4dafrica.Document.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ruraaratech.p4dafrica.location.model.Sector;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,9 +22,8 @@ public class Plan {
     private int year;
     @Column(length=1000)
     private String file;
-    private long sector;
-    private long district;
-    private long country;
+    @ManyToOne
+    private Sector sector;
     @Column(length = 50000)
     private URL url;
     private long createdBy;

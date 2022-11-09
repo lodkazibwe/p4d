@@ -15,7 +15,7 @@ public class FirebaseInit {
     @PostConstruct
     public void initialize() throws IOException {
         FileInputStream serviceAccount =
-                new FileInputStream("/home/qci_user/apps/p4d/service-account.json");// /home/iat/iat
+                new FileInputStream("/home/qci_user/apps/p4d/service-account.json");// /home/qci_user/apps/p4d/
         //./service-account.json
         //
 

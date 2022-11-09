@@ -1,5 +1,6 @@
 package com.ruraaratech.p4dafrica.location.rest;
 
+import com.ruraaratech.p4dafrica.Document.dto.YearDocument;
 import com.ruraaratech.p4dafrica.location.dto.SectorRequest;
 import com.ruraaratech.p4dafrica.location.dto.SectorResponse;
 import com.ruraaratech.p4dafrica.location.model.Sector;
@@ -33,7 +34,7 @@ public class SectorController {
     @ApiOperation(value = "returns list of all sectors in a district.")
     @GetMapping("/get/all/{districtId}")
     public ResponseEntity<List<Sector>> getAll(@PathVariable long districtId){
-        return ResponseEntity.status(HttpStatus.OK).body(sectorService.getByDistrict(districtId));
+        return ResponseEntity.status(HttpStatus.OK).body(sectorService.getAll(districtId));
     }
 
     @ApiOperation(value = "returns list of all sectors")
@@ -41,4 +42,11 @@ public class SectorController {
     public ResponseEntity<List<Sector>> getAll(){
         return ResponseEntity.status(HttpStatus.OK).body(sectorService.getAll());
     }
+
+    @ApiOperation(value = "returns list of all sectors and files per year")
+    @GetMapping("/get/all/{districtId}/{year}")
+    public ResponseEntity<List<YearDocument>> getAll(@PathVariable long districtId, @PathVariable int year){
+        return ResponseEntity.status(HttpStatus.OK).body(sectorService.getAll(districtId, year));
+    }
+
 }

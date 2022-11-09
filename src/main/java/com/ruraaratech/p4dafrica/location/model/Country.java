@@ -1,5 +1,6 @@
 package com.ruraaratech.p4dafrica.location.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,9 @@ public class Country {
     private long id;
     @Column(unique = true)
     private String name;
+    @JsonIgnoreProperties("country")
+    @OneToMany(mappedBy = "country", cascade= CascadeType.ALL, fetch= FetchType.EAGER)
+    private List<District> districts;
     private boolean enabled;
 
 }

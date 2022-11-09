@@ -1,13 +1,10 @@
 package com.ruraaratech.p4dafrica.Document.service.impl;
 
-import com.ruraaratech.p4dafrica.Document.dao.BudgetDao;
 import com.ruraaratech.p4dafrica.Document.dao.PlanDao;
 import com.ruraaratech.p4dafrica.Document.dto.FileRequest;
-import com.ruraaratech.p4dafrica.Document.model.Budget;
 import com.ruraaratech.p4dafrica.Document.model.Plan;
 import com.ruraaratech.p4dafrica.Document.service.PlanService;
 import com.ruraaratech.p4dafrica.firebase.File.FileService;
-import com.ruraaratech.p4dafrica.location.model.District;
 import com.ruraaratech.p4dafrica.location.model.Sector;
 import com.ruraaratech.p4dafrica.location.service.DistrictService;
 import com.ruraaratech.p4dafrica.location.service.SectorService;
@@ -41,12 +38,14 @@ public class PlanImpl implements PlanService {
     @Override
     public Plan add(MultipartFile multiPart, FileRequest file) throws IOException {
         SysUser user =userService.currentUser();
-        Plan plan =new Plan();
         Sector sector =sectorService.get(file.getSectorId());
-        District district =districtService.getById(sector.getDistrictId());
-        plan.setCountry(district.getCountryId());
-        plan.setDistrict(sector.getDistrictId());
-        plan.setSector(file.getSectorId());
+        Plan plan =new Plan();
+        logger.info("check if plan exists exists....");
+        Plan existingPlan =planDao.findBySectorAndYear(sector, file.getYear());
+        if(existingPlan!=null){
+            plan.setId(existingPlan.getId());
+        }
+        plan.setSector(sector);
         String fileName =fileService.generateFileName(multiPart);
         plan.setFile(fileName);
         plan.setYear(file.getYear());
