@@ -1,6 +1,7 @@
 package com.ruraaratech.p4dafrica.Document.dao;
 
 import com.ruraaratech.p4dafrica.Document.model.Budget;
+import com.ruraaratech.p4dafrica.Document.model.Plan;
 import com.ruraaratech.p4dafrica.location.model.District;
 import com.ruraaratech.p4dafrica.location.model.Sector;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,4 +24,5 @@ public interface BudgetDao extends JpaRepository<Budget, Long> {
     List<Budget> findByDistrict(District district);
 
     Budget findBySectorAndYear(Sector sector, int year);
+    List<Budget> findAllByOrderByDateCreatedDesc();
 }

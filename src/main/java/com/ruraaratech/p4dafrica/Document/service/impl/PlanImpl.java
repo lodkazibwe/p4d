@@ -72,6 +72,6 @@ public class PlanImpl implements PlanService {
 
     @Override
     public List<Plan> getAll() {
-        return planDao.findAll();
+        return planDao.findAllByOrderByDateCreatedDesc();
     }
 }

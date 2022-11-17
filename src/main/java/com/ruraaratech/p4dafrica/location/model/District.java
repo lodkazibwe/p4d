@@ -17,6 +17,7 @@ public class District {
     @GeneratedValue
     private long Id;
     private String name;
+    @JsonIgnoreProperties("districts")
     @ManyToOne
     private Country country;
     @JsonIgnoreProperties("district")

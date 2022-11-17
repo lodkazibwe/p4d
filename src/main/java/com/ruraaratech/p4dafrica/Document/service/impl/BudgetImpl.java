@@ -78,6 +78,6 @@ public class BudgetImpl implements BudgetService {
 
     @Override
     public List<Budget> getAll() {
-        return budgetDao.findAll();
+        return budgetDao.findAllByOrderByDateCreatedDesc();
     }
 }

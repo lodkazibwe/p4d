@@ -64,4 +64,5 @@ public class PlanController {
     public ResponseEntity<List<Plan>> getAll(){
         return ResponseEntity.status(HttpStatus.OK).body(planService.getAll());
     }
+
 }

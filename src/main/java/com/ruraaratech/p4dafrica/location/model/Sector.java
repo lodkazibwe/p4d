@@ -22,6 +22,7 @@ public class Sector {
     private long id;
     private String name;
     private boolean enabled;
+    @JsonIgnoreProperties("sectors")
     @ManyToOne
     private District district;
     @JsonIgnoreProperties("sector")
